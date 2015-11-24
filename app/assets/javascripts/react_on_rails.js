@@ -22,7 +22,7 @@
         // Set hasErrors in case we want to throw a Rails exception
         hasErrors = !!reactElementOrRouterResult.routeError;
         if (hasErrors) {
-          console.error("React Router ERROR: " +
+          console.error('React Router ERROR: ' +
             JSON.stringify(reactElementOrRouterResult.routeError));
         } else {
           if (trace) {
