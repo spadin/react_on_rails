@@ -57,3 +57,31 @@ feature "Pages/Index", js: true do
     include_examples "React Component", "div#my-hello-world-id"
   end
 end
+
+feature "Pages/client_side_log_throw", js: true do
+  subject { page }
+  background { visit "/client_side_log_throw" }
+
+  scenario { is_expected.to have_text "This example demonstrates client side logging and error handling." }
+end
+
+feature "Pages/server_side_log_throw", js: true do
+  subject { page }
+  background { visit "/server_side_log_throw" }
+
+  scenario "page has server side throw messages" do
+    expect(subject).to have_text "This example demonstrates server side logging and error handling."
+    expect(subject).to have_text "Exception in rendering!\n\nMessage: throw in HelloWorldContainer"
+  end
+end
+
+feature "Pages/server_side_log_throw_raise" do
+  subject { page }
+  background { visit "/server_side_log_throw_raise" }
+
+  scenario "redirects to /client_side_hello_world and flashes an error" do
+    expect(current_url).to eq("http://www.example.com/client_side_hello_world")
+    flash_message = page.find(:css, ".flash").text
+    expect(flash_message).to eq("Error prerendering in react_on_rails. See server logs.")
+  end
+end
