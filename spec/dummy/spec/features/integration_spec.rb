@@ -3,8 +3,8 @@ require "rails_helper"
 shared_examples "React Component" do |dom_selector|
   scenario { is_expected.to have_css dom_selector }
 
-  scenario "changes text" do
-    new_text = "Hey there!"
+  scenario "changes name in message according to input" do
+    new_text = "John Doe"
 
     within(dom_selector) do
       find("input").set new_text
@@ -84,4 +84,15 @@ feature "Pages/server_side_log_throw_raise" do
     flash_message = page.find(:css, ".flash").text
     expect(flash_message).to eq("Error prerendering in react_on_rails. See server logs.")
   end
+end
+
+feature "Pages/index after using browser's back button", js: true do
+  subject { page }
+  background do
+    visit root_path
+    visit "/client_side_hello_world"
+    go_back
+  end
+
+  include_examples "React Component", "div#ReduxApp-react-component-0"
 end
