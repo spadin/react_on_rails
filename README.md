@@ -197,20 +197,6 @@ This is how you actually render the React components you exposed to `window` ins
 
 This is a helper method that takes any JavaScript expression and returns the output from evaluating it. If you have more than one line that needs to be executed, wrap it in an IIFE. JS exceptions will be caught and console messages handled properly.
 
-### Redux
-See examples of using a generator function to create the top level react-redux component.
-
-### React-Router
-There's no special instructions needed for react-router for client rendering.
-
-If you're server rendering with react-router, you'll need to use the option generator_function to return either:
-
-1. React Component
-2. Object (which we'll call the `routerResult`) with either the shape of:
-  `{ error, redirectLocation }`
-
-You should consult the docs for [react-router server rendering](https://github.com/rackt/react-router/blob/master/docs/guides/advanced/ServerRendering.md) as well as the example in the [React Webpack Rails Tutorial Code](https://github.com/shakacode/react-webpack-rails-tutorial) for how to do this.
-
 ## Generator
 The `react_on_rails:install` generator combined with the example pull requests of generator runs will get you up and running efficiently. There's a fair bit of setup with integrating Webpack with Rails.
 
@@ -333,6 +319,7 @@ As you add more routes to your front-end application, you will need to make the 
 + [Manual Installation](docs/additional_reading/manual_installation.md)
 + [Node Dependencies and NPM](docs/additional_reading/node_dependencies_and_npm.md)
 + [Optional  Configuration](docs/additional_reading/optional_configuration.md)
++ [React Router](docs/additional_reading/react_router.md)
 + [Server Rendering Tips](docs/additional_reading/server_rendering_tips.md)
 + [Tips](docs/additional_reading/tips.md)
 

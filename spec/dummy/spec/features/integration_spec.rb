@@ -96,3 +96,22 @@ feature "Pages/index after using browser's back button", js: true do
 
   include_examples "React Component", "div#ReduxApp-react-component-0"
 end
+
+feature "React Router" do
+  subject { page }
+  background { visit "/react_router" }
+  context "/react_router" do
+    it { is_expected.to have_text("Woohoo, we can use react-router here!") }
+    scenario "clicking links correctly renders other pages" do
+      click_link "Router First Page"
+      expect(current_path).to eq("/react_router/first_page")
+      first_page_header_text = page.find(:css, "h2").text
+      expect(first_page_header_text).to eq("React Router First Page")
+
+      click_link "Router Second Page"
+      expect(current_path).to eq("/react_router/second_page")
+      second_page_header_text = page.find(:css, "h2").text
+      expect(second_page_header_text).to eq("React Router Second Page")
+    end
+  end
+end
