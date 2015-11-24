@@ -133,9 +133,6 @@ module ReactOnRailsHelper
   def server_rendered_react_component_html(options, props, react_component_name, dom_id)
     return ["", ""] unless prerender(options)
 
-    # Make sure that we use up-to-date server-bundle
-    ReactOnRails::ServerRenderingPool.reset_pool if Rails.env.development?
-
     # Since this code is not inserted on a web page, we don't need to escape.
     props_string = props.is_a?(String) ? props : props.to_json
 
