@@ -80,7 +80,7 @@ feature "Pages/server_side_log_throw_raise" do
   background { visit "/server_side_log_throw_raise" }
 
   scenario "redirects to /client_side_hello_world and flashes an error" do
-    expect(current_url).to eq("http://www.example.com/client_side_hello_world")
+    expect(current_path).to eq("/client_side_hello_world")
     flash_message = page.find(:css, ".flash").text
     expect(flash_message).to eq("Error prerendering in react_on_rails. See server logs.")
   end
