@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router';
 
 export default class RouterLayout extends React.Component {
+  static propTypes = {children: React.PropTypes.object};
 
   render() {
     return (
